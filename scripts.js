@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     categoryFilter.addEventListener('change', filterImages);
 
     const categories = [
-        { id: 'logos', path: 'logos/' },
-        { id: 'banner', path: 'banner/' },
-        { id: 'grafik-elemente', path: 'grafik-elemente/' },
-        { id: 'anderes', path: 'anderes/' }
+        { id: 'logos', path: './logos/' },
+        { id: 'banner', path: './banner/' },
+        { id: 'grafik-elemente', path: './grafik-elemente/' },
+        { id: 'anderes', path: './anderes/' }
     ];
 
     categories.forEach(category => {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageLinks.forEach(link => {
                         const href = link.getAttribute('href');
                         const img = document.createElement('img');
-                        img.src = `${href}`; // Pfad korrekt zusammensetzen
+                        img.src = `${category.path}${href}`; // Pfad korrekt zusammensetzen
                         img.alt = href;
                         gallery.appendChild(img);
                     });
