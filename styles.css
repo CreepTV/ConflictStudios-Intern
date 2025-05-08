@@ -2,90 +2,170 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f3f4f6;
     color: #333;
+    width: 100%;
+    overflow-x: hidden;
+    line-height: 1.6;
+    user-select: none;
+    cursor: default;
 }
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap');
 header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #412626;
+    background-color: #2c2c54;
     color: white;
-    padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
 }
 header img {
-    max-height: 60px;
-    margin-right: 0.5rem;
+    max-height: 80px;
+    margin-right: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .header-text {
     font-family: 'Work Sans', sans-serif;
-    font-size: 1.2rem;
+    font-size: 36px;
     font-weight: 700;
-    text-align: left; 
+    text-align: left;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-left: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 main {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 40px;
 }
 .sidebar {
-    flex: 0 0 200px;
-    margin-right: 2rem;
+    flex: 1 1 250px;
+    max-width: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .search-bar {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
 }
 .search-bar input, .search-bar select {
-    padding: 0.5rem;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
 }
 .search-bar input:focus, .search-bar select:focus {
     outline: none;
-    border-color: #555;
+    border-color: #2c2c54;
+}
+.search-bar input {
+    user-select: text;
+    cursor: text;
 }
 .content {
-    flex: 1;
+    flex: 3 1 700px;
+    width: 75%;
 }
 section {
-    margin-bottom: 3rem;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 h2 {
-    font-size: 1.5rem;
-    color: #555;
-    border-bottom: 2px solid #555;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+    font-size: 28px;
+    color: #2c2c54;
+    border-bottom: 3px solid #2c2c54;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
 }
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-    row-gap: 20px;
-    justify-items: start; /* Links ausrichten */
+    gap: 24px;
+    width: 100%;
 }
 .gallery img {
-    width: auto;
-    max-height: 85px;
+    width: 100%;
+    height: auto;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Reduzierte Skalierung */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Weniger intensiver Schatten */
 }
 .hidden {
     display: none;
 }
+
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.image-overlay img {
+    max-width: 90%;
+    max-height: 80%;
+    border: none;
+    border-radius: 0;
+    transform-origin: center; /* Zoom-Zentrum */
+    transition: transform 0.2s ease; /* Sanfter Zoom */
+}
+
+.toolbar {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 30px;
+    border-radius: 12px;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.toolbar-button {
+    font-size: 28px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.toolbar-button:hover {
+    color: #ff4d4d;
+    transform: scale(1.2);
+}
+
+/* Google Material Icons einbinden */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
